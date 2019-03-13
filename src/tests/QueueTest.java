@@ -31,7 +31,7 @@ class QueueTest {
 		assertNotNull(queue.peek());
 		assertFalse(queue.isEmpty());
 		assertEquals("alv",queue.peek());
-		assertNotEquals("pues al parecer no", queue.peek());
+		assertNotEquals("you shall not pass", queue.peek());
 		
 	}
 	
@@ -41,13 +41,13 @@ class QueueTest {
 		assertNull(queue.poll());
 		assertTrue(queue.isEmpty());
 		
-		queue.offer("Funciona!");
-		queue.offer("Esta vivo!!");
-		queue.offer("aqui podemos apreciar claramente que funciona");
+		queue.offer("It works!");
+		queue.offer("It´s alive!!");
+		queue.offer("we clearly can see that this works :)");
 		queue.offer("100% real no feik :v");
 		
 		assertEquals(4, queue.size());
-		assertEquals("Funciona!", queue.peek());
+		assertEquals("It works!", queue.peek());
 		assertNotNull(queue.peek());
 		assertFalse(queue.isEmpty());
 	}
