@@ -8,15 +8,25 @@ public class Cashier {
 	private IStack<Book> bookStack;
 	
 	public Cashier() {
-		bookStack=new Stack<>();
+		setBookStack(new Stack<>());
 	}
 
-	public IStack<Book> getBooks() {
+	/**
+	 * @return the bookStack
+	 */
+	public IStack<Book> getBookStack() {
 		return bookStack;
 	}
 
-	public void setBooks(IStack<Book> books) {
-		this.bookStack = books;
+	/**
+	 * @param bookStack the bookStack to set
+	 */
+	public void setBookStack(IStack<Book> bookStack) {
+		this.bookStack = bookStack;
+	}
+
+	public void registerBook(Book b1) {
+		bookStack.push(b1);
 	}
 	
 }

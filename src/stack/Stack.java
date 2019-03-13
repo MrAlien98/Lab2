@@ -13,28 +13,28 @@ public class Stack<T> implements IStack<T>{
 		iqueue=new Queue<T>();
 	}
 	
-	public Queue<T> getCola() {
+	public Queue<T> getQueue() {
 		return (Queue<T>) queue;
 	}
 
-	public void setCola(Queue<T> cola) {
-		this.queue = cola;
+	public void setQueue(Queue<T> queue) {
+		this.queue = queue;
 	}
 
-	public Queue<T> getColaT() {
+	public Queue<T> getQueueT() {
 		return (Queue<T>) iqueue;
 	}
 
-	public void setColaT(Queue<T> colaT) {
-		this.iqueue = colaT;
+	public void setQueueT(Queue<T> queueT) {
+		this.iqueue = queueT;
 	}
 
 	@Override
-	public void push(T elemento) {
+	public void push(T element) {
 		if(queue.isEmpty()) {
-			queue.offer(elemento);
+			queue.offer(element);
 		}else {
-			iqueue.offer(elemento);
+			iqueue.offer(element);
 			while(!queue.isEmpty()) {
 				iqueue.offer(queue.poll());
 			}
@@ -66,8 +66,11 @@ public class Stack<T> implements IStack<T>{
 
 	@Override
 	public Stack<T> reverse(Stack<T> p) {
-		
-		return p;
+		Stack<T> f=new Stack<T>();
+		while(!p.isEmpty()) {
+			f.push(p.pop());
+		}
+		return f;
 	}
 	
 }
