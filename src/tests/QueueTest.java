@@ -22,6 +22,7 @@ class QueueTest {
 		queue.offer("Eooo");
 		queue.offer("HeeHee");
 		queue.offer("LUV");
+		
 	}
 
 	@Test
