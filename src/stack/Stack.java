@@ -63,5 +63,11 @@ public class Stack<T> implements IStack<T>{
 			return false;
 		}
 	}
+
+	@Override
+	public Stack<T> reverse(Stack<T> p) {
+		
+		return p;
+	}
 	
 }

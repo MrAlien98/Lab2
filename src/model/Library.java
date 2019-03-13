@@ -1,5 +1,9 @@
 package model;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+
 import queue.IQueue;
 import queue.Queue;
 
@@ -37,6 +41,21 @@ public class Library {
 
 	public void setBookshelfs(Bookshelf[] bookshelfs) {
 		this.bookshelfs = bookshelfs;
+	}
+	
+	public void addBook(int bookshelfN, String isbn, double price, int quantity) {
+		Book book1=new Book(isbn, price, quantity);
+		bookshelfs[bookshelfN].getBookHash().add(book1.getIsbn(), book1);
+	}
+	
+	public void writeEntry() {
+		try {
+			BufferedWriter bw=new BufferedWriter(new FileWriter("src/testCases/Input.txt"));
+			
+			bw.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

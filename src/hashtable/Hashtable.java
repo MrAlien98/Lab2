@@ -1,5 +1,7 @@
 package hashtable;
 
+import exceptions.NoBookException;
+
 public class Hashtable<K, V> {
 	
 	private LinkedList<K, V>[] nodes;
@@ -14,17 +16,17 @@ public class Hashtable<K, V> {
 	}
 
 	public void add(K key, V value) {
-		if(nodes[hashFunction(key)]==null) {
-			nodes[hashFunction(key)]=new LinkedList<>(key, value);
+		int k=hashFunction(key);
+		if(nodes[k]==null) {
+			nodes[k]=new LinkedList<>(key, value);
 		}else {
-			nodes[hashFunction(key)].add(key, value);
+			nodes[k].add(key, value);
 		}
 	}
 	
 	public int hashFunction(K key) {
 		int nKey=toAscii(key);
 		nKey=(nKey%nodes.length);
-		System.out.println(nKey);
 		return nKey;
 	}
 	
@@ -36,6 +38,18 @@ public class Hashtable<K, V> {
 			c++;
 		}
 		return res;
+	}
+	
+	public void delete(K key, V value) throws NoBookException {
+		int k=hashFunction(key);
+		if(nodes[k]!=null) {
+			nodes[k].delete(value);
+		}
+	}
+	
+	public HashNode<K, V> find(K key) throws NoBookException {
+		int x=hashFunction(key);
+		return nodes[x].find(key);
 	}
 	
 	public void setNodes(LinkedList<K, V>[] nodes) {

@@ -4,11 +4,10 @@ import hashtable.Hashtable;
 
 public class Bookshelf{
 
-	private String id;
-	
+	private int id;
 	private Hashtable<String, Book> bookHash;
 
-	public Bookshelf(String id, int size) {
+	public Bookshelf(int id, int size) {
 		this.id=id;
 		bookHash=new Hashtable<String, Book>(size);
 	}
@@ -21,11 +20,11 @@ public class Bookshelf{
 		this.bookHash = bookHash;
 	}
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	

@@ -22,7 +22,7 @@ public class HashNode<K, V> {
 	public void setElement(V value) {
 		this.value = value;
 	}
-
+	
 	public HashNode<K, V> getNext() {
 		return next;
 	}

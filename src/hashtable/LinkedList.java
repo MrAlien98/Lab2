@@ -1,5 +1,7 @@
 package hashtable;
 
+import exceptions.NoBookException;
+
 public class LinkedList<K, V> {
 
 	private HashNode<K, V> first;
@@ -30,23 +32,42 @@ public class LinkedList<K, V> {
 		}
 	}
 	
-	public void delete(V value) {
+	public void delete(V value) throws NoBookException {
+		HashNode<K, V> temp=first;
 		if(first.getValue()==value) {
 			first=first.getNext();
 		}else {
-			HashNode<K, V> actual=first;
-			while(actual.getNext()!=null) {
-				if(actual.getValue()==value) {
-					actual.getNext().setPrev(actual.getPrev());
-					actual.getPrev().setNext(actual.getNext());
-					actual.setNext(null);
-					actual.setPrev(null);
+			while(temp.getNext()!=null) {
+				if(temp.getValue()==value) {
+					temp.getNext().setPrev(temp.getPrev());
+					temp.getPrev().setNext(temp.getNext());
+					temp.setNext(null);
+					temp.setPrev(null);
 				}else {
-					actual=actual.getNext();
+					temp=temp.getNext();
 				}
+			}
+			if(temp.getNext()==null) {
+				throw new NoBookException(value);
 			}
 		}
 	}
 	
+	public HashNode<K, V> find(K key) throws NoBookException {
+		HashNode<K, V> temp=first;
+		if(temp.getKey()==key) {
+			return temp;
+		}else {
+			temp=temp.getNext();
+			while(temp!=null) {
+				if(temp.getKey()==key) {
+					return temp;
+				}else {
+					temp=temp.getNext();
+				}
+			}
+		}
+		throw new NoBookException(key);
+	}
 	
 }
