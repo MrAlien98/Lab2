@@ -6,16 +6,16 @@ import stack.Stack;
 public class Client {
 	
 	private String id;
+	private double bill;
+	
 	private IStack<Book> booksList;
 	private IStack<Book> bookStack;
 	
-	private double account;
-	
 	public Client(String identification) {
 		this.id=identification;
+		bill=0;
 		bookStack=new Stack<>();
 		booksList=new Stack<>();
-		account=0;
 	}
 
 	/**
@@ -69,17 +69,17 @@ public class Client {
 	}
 
 	/**
-	 * @return the account
+	 * @return the bill
 	 */
-	public double getAccount() {
-		return account;
+	public double getBill() {
+		return bill;
 	}
 
 	/**
-	 * @param account the account to set
+	 * @param bill the bill to set
 	 */
-	public void setAccount(double account) {
-		this.account = account;
+	public void setBill(double bill) {
+		this.bill = bill;
 	}
 	
 }

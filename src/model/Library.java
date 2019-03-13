@@ -77,6 +77,7 @@ public class Library {
 			while(!clients.peek().getBookStack().isEmpty()) {
 				if(clients.peek().getBookStack().peek().getQuantity()>0) {
 					clients.peek().buyBook(bookshelfs[clients.peek().getBooksList().peek().getBookshelf()].getBookHash().find(clients.peek().getBooksList().pop().getIsbn()).getValue());
+					clients.peek().setBill(clients.peek().getBill()+clients.peek().getBookStack().peek().getPrice());
 				}
 			}
 			clientsT.offer(clients.poll());
@@ -96,15 +97,23 @@ public class Library {
 	/**
 	 * 
 	 */
-	public void readInput() {
-		
-	}
-	
-	/**
-	 * 
-	 */
 	public void writeOutput() {
-		
+		String output="";
+		while(!clients.isEmpty()) {
+			output+=clients.peek().getId()+" "+clients.peek().getBill()+"\n";
+			clients.peek().setBookStack(clients.peek().getBookStack().reverse(clients.peek().getBookStack()));
+			while(!clients.peek().getBookStack().isEmpty()) {
+				output+=clients.peek().getBookStack().pop().getIsbn()+" ";
+			}
+			output+="\n";
+		}
+		try {
+			BufferedWriter bw=new BufferedWriter(new FileWriter("src/testCases/Output.txt"));
+			bw.write(output);
+			bw.close();
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 	/**

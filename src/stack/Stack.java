@@ -65,7 +65,7 @@ public class Stack<T> implements IStack<T>{
 	}
 
 	@Override
-	public Stack<T> reverse(Stack<T> p) {
+	public Stack<T> reverse(IStack<T> p) {
 		Stack<T> f=new Stack<T>();
 		while(!p.isEmpty()) {
 			f.push(p.pop());

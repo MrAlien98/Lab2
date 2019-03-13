@@ -6,6 +6,6 @@ public interface IStack<T> {
 	public T pop();
 	public T peek();
 	public boolean isEmpty();
-	public Stack<T> reverse(Stack<T> p);
+	public Stack<T> reverse(IStack<T> p);
 	
 }
