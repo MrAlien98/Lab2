@@ -67,7 +67,7 @@ public class Main extends Application {
 					while(bookNumber>0) {
 						String book=br.readLine();
 						String[] eachBook=book.split(" ");
-						lib.getBookshelfs()[Integer.parseInt(idnbs[0])-1].getBookHash().add(eachBook[0], new Book(Integer.parseInt(idnbs[0]), eachBook[0], Double.parseDouble(eachBook[1]), Integer.parseInt(eachBook[2])));
+						lib.getBookshelfs()[c].getBookHash().add(eachBook[0], new Book(Integer.parseInt(idnbs[0]), eachBook[0], Double.parseDouble(eachBook[1]), Integer.parseInt(eachBook[2])));
 						bookNumber--;
 					}
 					bookshelfs--;

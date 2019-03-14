@@ -100,7 +100,13 @@ public class Library {
 		Queue<Client> clientsT=new Queue<>();
 		while(!clients.isEmpty()) {
 			while(!clients.peek().getBooksList().isEmpty()) {
-				if(clients.peek().getBooksList().peek().getQuantity()>0) {
+				Book temp=null;
+				for(int i=0;i<bookshelfs.length;i++) {
+					if(bookshelfs[i].getBookHash().find(clients.peek().getBooksList().peek().getIsbn()).getValue()!=null){
+						temp=bookshelfs[i].getBookHash().find(clients.peek().getBooksList().peek().getIsbn()).getValue();
+					}
+				}
+				if(temp.getQuantity()>0 && temp!=null) {
 					clients.peek().buyBook(bookshelfs[clients.peek().getBooksList().peek().getBookshelf()].getBookHash().find(clients.peek().getBooksList().peek().getIsbn()).getValue());
 					clients.peek().getBookStack().push(clients.peek().getBooksList().pop());
 					clients.peek().setBill(clients.peek().getBill()+clients.peek().getBookStack().peek().getPrice());
@@ -122,9 +128,6 @@ public class Library {
 		String output="";
 		while(!clients.isEmpty()) {
 			output+=clients.peek().getId()+" "+clients.peek().getBill()+"\n";
-			System.out.println("Cliente: "+clients.peek());
-			System.out.println("Books list size: "+clients.peek().getBooksList().size());
-			System.out.println("Book Stack size: "+clients.peek().getBookStack().size());
 			clients.peek().setBookStack(clients.peek().getBookStack().reverse(clients.peek().getBookStack()));
 			while(!clients.peek().getBookStack().isEmpty()) {
 				output+=clients.peek().getBookStack().pop().getIsbn()+" ";
@@ -132,7 +135,6 @@ public class Library {
 			clients.poll();
 			output+="\n";
 		}
-		System.out.println(output);
 		try {
 			BufferedWriter bw=new BufferedWriter(new FileWriter("src/test cases/Output.txt"));
 			bw.write(output);
