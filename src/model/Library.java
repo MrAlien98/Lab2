@@ -15,7 +15,7 @@ import queue.Queue;
  */
 public class Library {
 	
-	private IQueue<Client> clients;
+	private Queue<Client> clients;
 	private Cashier[] cashiers;
 	private Bookshelf[] bookshelfs;
 	
@@ -25,11 +25,15 @@ public class Library {
 	 * @param bookshelfsSize
 	 */
 	public Library(int cashierSize, int bookshelfsSize) {
-		clients=new Queue<>();
 		cashiers=new Cashier[cashierSize];
 		bookshelfs=new Bookshelf[bookshelfsSize];
+		clients=new Queue<>();
 	}
-
+	
+	public Library() {
+		clients=new Queue<>();
+	}
+	
 	/**
 	 * @return the clients
 	 */
@@ -40,7 +44,7 @@ public class Library {
 	/**
 	 * @param clients the clients to set
 	 */
-	public void setClients(IQueue<Client> clients) {
+	public void setClients(Queue<Client> clients) {
 		this.clients = clients;
 	}
 
@@ -93,7 +97,7 @@ public class Library {
 	 * 
 	 */
 	public void buyBook() throws NoBookException {
-		IQueue<Client> clientsT=new Queue<>();
+		Queue<Client> clientsT=new Queue<>();
 		while(!clients.isEmpty()) {
 			while(!clients.peek().getBookStack().isEmpty()) {
 				if(clients.peek().getBookStack().peek().getQuantity()>0) {
@@ -132,7 +136,6 @@ public class Library {
 		try {
 			BufferedWriter bw=new BufferedWriter(new FileWriter("src/test cases/Output.txt"));
 			bw.write(output);
-			System.out.println(output);
 			bw.close();
 		}catch(Exception e) {
 			e.printStackTrace();
