@@ -104,6 +104,7 @@ public class Library {
 				for(int i=0;i<bookshelfs.length;i++) {
 					if(bookshelfs[i].getBookHash().find(clients.peek().getBooksList().peek().getIsbn()).getValue()!=null){
 						temp=bookshelfs[i].getBookHash().find(clients.peek().getBooksList().peek().getIsbn()).getValue();
+						break;
 					}
 				}
 				if(temp.getQuantity()>0 && temp!=null) {
@@ -117,8 +118,7 @@ public class Library {
 		}
 		while(!clientsT.isEmpty()) {
 			clients.offer(clientsT.poll());
-		}
-		
+		}		
 	}
 
 	/**

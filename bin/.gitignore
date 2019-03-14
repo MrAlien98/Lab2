@@ -1,9 +1,9 @@
 /application/
 /exceptions/
 /hashtable/
+/image/
 /model/
 /queue/
 /stack/
-/tests/
-/image/
 /test cases/
+/tests/

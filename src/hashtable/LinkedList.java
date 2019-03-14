@@ -55,12 +55,12 @@ public class LinkedList<K, V> {
 	
 	public HashNode<K, V> find(K key) throws NoBookException {
 		HashNode<K, V> temp=first;
-		if(temp.getKey()==key) {
+		if(temp.getKey().equals(key)) {
 			return temp;
 		}else {
 			temp=temp.getNext();
 			while(temp!=null) {
-				if(temp.getKey()==key) {
+				if(temp.getKey().equals(key)) {
 					return temp;
 				}else {
 					temp=temp.getNext();
