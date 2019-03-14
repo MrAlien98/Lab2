@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="493.0" prefWidth="674.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SampleController">
    <children>
       <GridPane layoutX="-4.0" layoutY="-3.0" prefHeight="484.0" prefWidth="674.0">
         <columnConstraints>
@@ -30,20 +29,25 @@
             </Label>
             <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <children>
-                  <Button layoutX="22.0" layoutY="39.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="192.0" text="USE TEST CASE">
+                  <Button fx:id="butBaseCase" layoutX="22.0" layoutY="39.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="192.0" text="USE TEST CASE">
                      <font>
                         <Font name="Impact" size="15.0" />
                      </font>
                   </Button>
-                  <Button layoutX="22.0" layoutY="99.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="192.0" text="CREATE A NEW CASE">
+                  <Button fx:id="butOwnCase" layoutX="22.0" layoutY="99.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="192.0" text="CREATE A NEW CASE">
                      <font>
                         <Font name="Impact" size="15.0" />
                      </font>
                   </Button>
                </children>
             </AnchorPane>
-            <TextArea prefHeight="210.0" prefWidth="398.0" GridPane.rowIndex="2" />
-            <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+            <TextArea fx:id="txtSolution" prefHeight="210.0" prefWidth="398.0" GridPane.rowIndex="2" />
+            <TextArea fx:id="txtCase" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1" />
+            <Button fx:id="butSolution" mnemonicParsing="false" prefHeight="30.0" prefWidth="186.0" text="SHOW SOLUTION" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <font>
+                  <Font name="Impact" size="15.0" />
+               </font>
+            </Button>
          </children>
       </GridPane>
    </children>
