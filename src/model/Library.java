@@ -104,14 +104,14 @@ public class Library {
 				for(int i=0;i<bookshelfs.length;i++) {
 					if(bookshelfs[i].getBookHash().find(clients.peek().getBooksList().peek().getIsbn()).getValue()!=null){
 						temp=bookshelfs[i].getBookHash().find(clients.peek().getBooksList().peek().getIsbn()).getValue();
+						if(temp.getQuantity()>0) {
+							clients.peek().buyBook(bookshelfs[clients.peek().getBooksList().peek().getBookshelf()].getBookHash().find(clients.peek().getBooksList().peek().getIsbn()).getValue());
+							clients.peek().getBookStack().push(clients.peek().getBooksList().pop());
+							clients.peek().setBill(clients.peek().getBill()+clients.peek().getBookStack().peek().getPrice());
+							clients.peek().getBookStack().peek().setQuantity(clients.peek().getBookStack().peek().getQuantity()-1);
+						}
 						break;
 					}
-				}
-				if(temp.getQuantity()>0 && temp!=null) {
-					clients.peek().buyBook(bookshelfs[clients.peek().getBooksList().peek().getBookshelf()].getBookHash().find(clients.peek().getBooksList().peek().getIsbn()).getValue());
-					clients.peek().getBookStack().push(clients.peek().getBooksList().pop());
-					clients.peek().setBill(clients.peek().getBill()+clients.peek().getBookStack().peek().getPrice());
-					clients.peek().getBookStack().peek().setQuantity(clients.peek().getBookStack().peek().getQuantity()-1);
 				}
 			}
 			clientsT.offer(clients.poll());

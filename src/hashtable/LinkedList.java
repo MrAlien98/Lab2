@@ -53,7 +53,7 @@ public class LinkedList<K, V> {
 		}
 	}
 	
-	public HashNode<K, V> find(K key) throws NoBookException {
+	public HashNode<K, V> find(K key) {
 		HashNode<K, V> temp=first;
 		if(temp.getKey().equals(key)) {
 			return temp;
@@ -67,7 +67,7 @@ public class LinkedList<K, V> {
 				}
 			}
 		}
-		throw new NoBookException(key);
+		return null;
 	}
 	
 }
