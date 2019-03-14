@@ -13,6 +13,11 @@ import model.Book;
 import model.Client;
 import model.Library;
 
+/**
+ * 
+ * @author c
+ *
+ */
 public class Main extends Application {
 
 	static Library lib;
@@ -52,7 +57,7 @@ public class Main extends Application {
 					while(bookNumber>0) {
 						String book=br.readLine();
 						String[] eachBook=book.split(" ");
-						lib.getBookshelfs()[Integer.parseInt(idnbs[0])].getBookHash().add(eachBook[0], new Book(eachBook[0], Double.parseDouble(eachBook[1]), Integer.parseInt(eachBook[2])));
+						lib.getBookshelfs()[Integer.parseInt(idnbs[0])].getBookHash().add(eachBook[0], new Book(Integer.parseInt(idnbs[0]), eachBook[0], Double.parseDouble(eachBook[1]), Integer.parseInt(eachBook[2])));
 						bookNumber--;
 					}
 					bookshelfs--;

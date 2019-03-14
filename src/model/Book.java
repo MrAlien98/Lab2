@@ -7,7 +7,8 @@ public class Book{
 	private double price;
 	private int quantity;
 	
-	public Book(String isbn, double price, int quantity) {
+	public Book(int bookshelf, String isbn, double price, int quantity) {
+		this.bookshelf=bookshelf;
 		this.isbn=isbn;
 		this.price=price;
 		this.quantity=quantity;

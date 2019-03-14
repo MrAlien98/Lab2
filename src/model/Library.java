@@ -8,12 +8,22 @@ import exceptions.NoBookException;
 import queue.IQueue;
 import queue.Queue;
 
+/**
+ * 
+ * @author c
+ *
+ */
 public class Library {
 	
 	private IQueue<Client> clients;
 	private Cashier[] cashiers;
 	private Bookshelf[] bookshelfs;
 	
+	/**
+	 * 
+	 * @param cashierSize
+	 * @param bookshelfsSize
+	 */
 	public Library(int cashierSize, int bookshelfsSize) {
 		clients=new Queue<>();
 		cashiers=new Cashier[cashierSize];
@@ -62,13 +72,24 @@ public class Library {
 		this.bookshelfs = bookshelfs;
 	}
 
+	/**
+	 * Adds a new book to an specific Bookshelf
+	 * @param bookshelfN number of the bookshel where the book will be saved
+	 * @param isbn identificator for the book
+	 * @param price price of the book
+	 * @param quantity how many of the same book will be available
+	 */
 	public void addBook(int bookshelfN, String isbn, double price, int quantity) {
-		Book book1=new Book(isbn, price, quantity);
+		Book book1=new Book(bookshelfN, isbn, price, quantity);
 		bookshelfs[bookshelfN].getBookHash().add(book1.getIsbn(), book1);
 	}
 	
 	/**
-	 * @throws NoBookException 
+	 * This method makes the client buy all of the
+	 * books on it´s bookList (Stack) and
+	 * passes them to his shopping cart (Stack)
+	 * @throws NoBookException if the book that the client is trying
+	 * 			to buy is not on the bookshelf or is not available
 	 * 
 	 */
 	public void buyBook() throws NoBookException {
@@ -78,6 +99,7 @@ public class Library {
 				if(clients.peek().getBookStack().peek().getQuantity()>0) {
 					clients.peek().buyBook(bookshelfs[clients.peek().getBooksList().peek().getBookshelf()].getBookHash().find(clients.peek().getBooksList().pop().getIsbn()).getValue());
 					clients.peek().setBill(clients.peek().getBill()+clients.peek().getBookStack().peek().getPrice());
+					clients.peek().getBookStack().peek().setQuantity(clients.peek().getBookStack().peek().getQuantity()-1);
 				}
 			}
 			clientsT.offer(clients.poll());
@@ -95,7 +117,7 @@ public class Library {
 	}
 	
 	/**
-	 * 
+	 * Writes an output to the case that has been passed from the GUI
 	 */
 	public void writeOutput() {
 		String output="";
@@ -118,10 +140,11 @@ public class Library {
 	
 	/**
 	 * Writes a new input for the test case
+	 * on a.txt file named RandomInput.txt
 	 */
 	public void writeInput(String input) {
 		try {
-			BufferedWriter bw=new BufferedWriter(new FileWriter("src/testCases/Input.txt"));
+			BufferedWriter bw=new BufferedWriter(new FileWriter("src/testCases/RandomInput.txt"));
 			bw.write(input);
 			bw.close();
 		} catch (IOException e) {

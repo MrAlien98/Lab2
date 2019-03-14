@@ -3,6 +3,11 @@ package application;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
+/**
+ * 
+ * @author c
+ *
+ */
 public class SampleController {
 	
 	@FXML private Button butBaseCase; 
@@ -12,10 +17,16 @@ public class SampleController {
 	@FXML private TextArea txtSolution;																					
 	@FXML private TextArea txtCase;
 	
+	/**
+	 * 
+	 */
 	public SampleController() {
 		
 	}
 	
+	/**
+	 * 
+	 */
 	public void initialize() {
 		butBaseCase.setOnAction(e->{
 			baseCaseMethod();
@@ -28,14 +39,23 @@ public class SampleController {
 		});
 	}
 	
+	/**
+	 * 
+	 */
 	public void baseCaseMethod() {
 		
 	}
 	
+	/**
+	 * 
+	 */
 	public void ownCaseMethod() {
 		
 	}
 	
+	/**
+	 * 
+	 */
 	public void showSolution() {
 		
 	}
