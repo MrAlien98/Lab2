@@ -13,6 +13,10 @@ public class Book{
 		this.quantity=quantity;
 	}
 
+	public Book(String isbn) {
+		this.isbn=isbn;
+	}
+	
 	/**
 	 * @return the bookshelf
 	 */
