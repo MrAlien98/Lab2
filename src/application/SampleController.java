@@ -7,8 +7,9 @@ import java.io.FileReader;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.control.*;
 
 /**
  * Class that handles the model-GUI relation
@@ -19,6 +20,8 @@ public class SampleController {
 	@FXML private Button butBaseCase; 
 	@FXML private Button butOwnCase;
 	@FXML private Button butSolution;
+	
+	@FXML private ImageView imgBanner;
 	
 	@FXML private TextArea txtSolution;																					
 	@FXML private TextArea txtCase;
@@ -43,6 +46,7 @@ public class SampleController {
 		butSolution.setOnAction(e->{
 			showSolution();
 		});
+		imgBanner.setImage(new Image("image/Banner.jpg"));
 	}
 	
 	/**
@@ -83,7 +87,18 @@ public class SampleController {
 	 * 
 	 */
 	public void showSolution() {
-		
+		try {
+			BufferedReader br=new BufferedReader(new FileReader(new File("src/test cases/Output.txt")));
+			String line="";
+			String result="";
+			while((line=br.readLine())!=null) {
+				result+=line+"\n";
+			}
+			txtSolution.setText(result);
+			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }

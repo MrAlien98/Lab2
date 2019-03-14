@@ -56,13 +56,13 @@ public class Main extends Application {
 			while(cases>0) {
 				int cashiers=Integer.parseInt(br.readLine());
 				int bookshelfs=Integer.parseInt(br.readLine());
+				lib=new Library(cashiers, bookshelfs);
 				int c=0;
 				while(bookshelfs>0) {
 					String bsh=br.readLine();
 					String[] idnbs=bsh.split(" ");
 					String idBF=idnbs[0];
 					int bookNumber=Integer.parseInt(idnbs[1]);
-					lib=new Library(cashiers, bookshelfs);
 					lib.getBookshelfs()[c]=new Bookshelf(idBF, bookNumber);
 					while(bookNumber>0) {
 						String book=br.readLine();
@@ -93,10 +93,10 @@ public class Main extends Application {
 		if(flag==false) {
 			try {
 				lib.buyBook();
+				lib.writeOutput();
 			} catch (NoBookException e) {
 				e.printStackTrace();
 			}
-			lib.writeOutput();
 		}
 	}
 	

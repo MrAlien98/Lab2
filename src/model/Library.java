@@ -99,9 +99,10 @@ public class Library {
 	public void buyBook() throws NoBookException {
 		Queue<Client> clientsT=new Queue<>();
 		while(!clients.isEmpty()) {
-			while(!clients.peek().getBookStack().isEmpty()) {
-				if(clients.peek().getBookStack().peek().getQuantity()>0) {
-					clients.peek().buyBook(bookshelfs[clients.peek().getBooksList().peek().getBookshelf()].getBookHash().find(clients.peek().getBooksList().pop().getIsbn()).getValue());
+			while(!clients.peek().getBooksList().isEmpty()) {
+				if(clients.peek().getBooksList().peek().getQuantity()>0) {
+					clients.peek().buyBook(bookshelfs[clients.peek().getBooksList().peek().getBookshelf()].getBookHash().find(clients.peek().getBooksList().peek().getIsbn()).getValue());
+					clients.peek().getBookStack().push(clients.peek().getBooksList().pop());
 					clients.peek().setBill(clients.peek().getBill()+clients.peek().getBookStack().peek().getPrice());
 					clients.peek().getBookStack().peek().setQuantity(clients.peek().getBookStack().peek().getQuantity()-1);
 				}
@@ -111,15 +112,9 @@ public class Library {
 		while(!clientsT.isEmpty()) {
 			clients.offer(clientsT.poll());
 		}
-	}
-	
-	/**
-	 * 
-	 */
-	public void passCashier() {
 		
 	}
-	
+
 	/**
 	 * Writes an output to the case that has been passed from the GUI
 	 */
@@ -127,12 +122,17 @@ public class Library {
 		String output="";
 		while(!clients.isEmpty()) {
 			output+=clients.peek().getId()+" "+clients.peek().getBill()+"\n";
+			System.out.println("Cliente: "+clients.peek());
+			System.out.println("Books list size: "+clients.peek().getBooksList().size());
+			System.out.println("Book Stack size: "+clients.peek().getBookStack().size());
 			clients.peek().setBookStack(clients.peek().getBookStack().reverse(clients.peek().getBookStack()));
 			while(!clients.peek().getBookStack().isEmpty()) {
 				output+=clients.peek().getBookStack().pop().getIsbn()+" ";
 			}
+			clients.poll();
 			output+="\n";
 		}
+		System.out.println(output);
 		try {
 			BufferedWriter bw=new BufferedWriter(new FileWriter("src/test cases/Output.txt"));
 			bw.write(output);

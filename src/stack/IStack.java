@@ -7,5 +7,5 @@ public interface IStack<T> {
 	public T peek();
 	public boolean isEmpty();
 	public Stack<T> reverse(IStack<T> p);
-	
+	public int size();
 }

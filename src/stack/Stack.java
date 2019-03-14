@@ -7,10 +7,12 @@ public class Stack<T> implements IStack<T>{
 
 	private IQueue<T> queue;
 	private IQueue<T> iqueue;
+	private int size;
 	
 	public Stack() {
 		queue=new Queue<T>();
 		iqueue=new Queue<T>();
+		size=0;
 	}
 	
 	public Queue<T> getQueue() {
@@ -43,10 +45,12 @@ public class Stack<T> implements IStack<T>{
 			}
 			iqueue.clear();
 		}
+		size++;
 	}
 	
 	@Override
 	public T pop() {
+		size--;
 		return queue.poll();
 	}
 	
@@ -71,6 +75,21 @@ public class Stack<T> implements IStack<T>{
 			f.push(p.pop());
 		}
 		return f;
+	}
+
+	/**
+	 * @return the size
+	 */
+	@Override
+	public int size() {
+		return size;
+	}
+
+	/**
+	 * @param size the size to set
+	 */
+	public void setSize(int size) {
+		this.size = size;
 	}
 	
 }
