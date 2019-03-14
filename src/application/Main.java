@@ -15,9 +15,8 @@ import model.Client;
 import model.Library;
 
 /**
+ * Main project class
  * 
- * @author c
- *
  */
 public class Main extends Application {
 
