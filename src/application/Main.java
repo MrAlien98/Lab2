@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import model.Book;
+import model.Bookshelf;
 import model.Client;
 import model.Library;
 
@@ -21,6 +22,9 @@ import model.Library;
 public class Main extends Application {
 
 	static Library lib;
+	
+	public Main() {
+	}
 	
 	@Override
 	public void start(Stage primaryStage) {
@@ -37,10 +41,13 @@ public class Main extends Application {
 	
 	public static void initializeModel(int x) {
 		String route="";
+		boolean flag=false;
 		if(x>0) {
 			route="src/test cases/BasicInput.txt";
+			flag=false;
 		}else {
 			route="src/test cases/RandomInput.txt";
+			flag=true;
 		}
 		try {
 			File input=new File(route);
@@ -49,11 +56,14 @@ public class Main extends Application {
 			while(cases>0) {
 				int cashiers=Integer.parseInt(br.readLine());
 				int bookshelfs=Integer.parseInt(br.readLine());
+				int c=0;
 				while(bookshelfs>0) {
 					String bsh=br.readLine();
 					String[] idnbs=bsh.split(" ");
+					String idBF=idnbs[0];
 					int bookNumber=Integer.parseInt(idnbs[1]);
 					lib=new Library(cashiers, bookshelfs);
+					lib.getBookshelfs()[c]=new Bookshelf(idBF, bookNumber);
 					while(bookNumber>0) {
 						String book=br.readLine();
 						String[] eachBook=book.split(" ");
@@ -61,6 +71,7 @@ public class Main extends Application {
 						bookNumber--;
 					}
 					bookshelfs--;
+					c++;
 				}
 				int clients=Integer.parseInt(br.readLine());
 				while(clients>0) {
@@ -73,10 +84,14 @@ public class Main extends Application {
 					lib.getClients().offer(clientO);
 					clients--;
 				}
+				cases--;
 			}
 			br.close();
 		}catch(Exception e) {
 			
+		}
+		if(flag==false) {
+			lib.writeOutput();
 		}
 	}
 	

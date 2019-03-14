@@ -43,7 +43,7 @@ public class SampleController {
 	 * 
 	 */
 	public void baseCaseMethod() {
-		
+		Main.initializeModel(1);
 	}
 	
 	/**

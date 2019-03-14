@@ -130,8 +130,9 @@ public class Library {
 			output+="\n";
 		}
 		try {
-			BufferedWriter bw=new BufferedWriter(new FileWriter("src/testCases/Output.txt"));
+			BufferedWriter bw=new BufferedWriter(new FileWriter("src/test cases/Output.txt"));
 			bw.write(output);
+			System.out.println(output);
 			bw.close();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -144,7 +145,7 @@ public class Library {
 	 */
 	public void writeInput(String input) {
 		try {
-			BufferedWriter bw=new BufferedWriter(new FileWriter("src/testCases/RandomInput.txt"));
+			BufferedWriter bw=new BufferedWriter(new FileWriter("src/test cases/RandomInput.txt"));
 			bw.write(input);
 			bw.close();
 		} catch (IOException e) {
