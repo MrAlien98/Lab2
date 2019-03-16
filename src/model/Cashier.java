@@ -6,9 +6,11 @@ import stack.Stack;
 public class Cashier {
 
 	private IStack<Book> bookStack;
+	private boolean bussy;
 	
 	public Cashier() {
 		setBookStack(new Stack<>());
+		setBussy(false);
 	}
 
 	/**
@@ -24,9 +26,32 @@ public class Cashier {
 	public void setBookStack(IStack<Book> bookStack) {
 		this.bookStack = bookStack;
 	}
+	
+	/**
+	 * @return the bussy
+	 */
+	public boolean isBussy() {
+		return bussy;
+	}
 
-	public void registerBook(Book b1) {
-		bookStack.push(b1);
+	/**
+	 * @param bussy the bussy to set
+	 */
+	public void setBussy(boolean bussy) {
+		this.bussy = bussy;
+	}
+	
+	public Client attendClient(Client c) {
+		setBussy(true);
+		double bill=0;
+		while(!c.getBookStack().isEmpty()) {
+			bookStack.push(c.getBookStack().pop());
+			bill+=bookStack.peek().getPrice();
+		}
+		c.setBill(bill);
+		c.setBookStack(bookStack);
+		setBussy(false);
+		return c;
 	}
 	
 }

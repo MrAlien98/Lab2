@@ -47,7 +47,7 @@ public class Hashtable<K, V> {
 		}
 	}
 	
-	public HashNode<K, V> find(K key) throws NoBookException {
+	public HashNode<K, V> find(K key) {
 		int x=hashFunction(key);
 		return nodes[x].find(key);
 	}

@@ -3,8 +3,6 @@ package application;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
-
-import exceptions.NoBookException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -67,7 +65,7 @@ public class Main extends Application {
 					while(bookNumber>0) {
 						String book=br.readLine();
 						String[] eachBook=book.split(" ");
-						lib.getBookshelfs()[c].getBookHash().add(eachBook[0], new Book(Integer.parseInt(idnbs[0]), eachBook[0], Double.parseDouble(eachBook[1]), Integer.parseInt(eachBook[2])));
+						lib.getBookshelfs()[c].getBookHash().add(eachBook[0], new Book((idnbs[0]), eachBook[0], Double.parseDouble(eachBook[1]), Integer.parseInt(eachBook[2])));
 						bookNumber--;
 					}
 					bookshelfs--;
@@ -91,12 +89,8 @@ public class Main extends Application {
 			
 		}
 		if(flag==false) {
-			try {
-				lib.buyBook();
-				lib.writeOutput();
-			} catch (NoBookException e) {
-				e.printStackTrace();
-			}
+			lib.buyBook();
+			lib.writeOutput();
 		}
 	}
 	

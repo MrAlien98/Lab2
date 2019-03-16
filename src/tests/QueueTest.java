@@ -32,7 +32,10 @@ class QueueTest {
 		assertFalse(queue.isEmpty());
 		assertEquals("alv",queue.peek());
 		assertNotEquals("you shall not pass", queue.peek());
-		
+		assertEquals(queue.poll(), "alv");
+		assertEquals(queue.poll(), "Mammaaaa");
+		assertEquals(queue.poll(), "Ayuwoki");
+		assertEquals(queue.poll(), "Eooo");
 	}
 	
 	@Test

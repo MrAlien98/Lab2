@@ -1,9 +1,2 @@
-/application/
-/docs/
-/exceptions/
-/hashtable/
-/image/
-/model/
-/queue/
-/stack/
 /tests/
+/model/

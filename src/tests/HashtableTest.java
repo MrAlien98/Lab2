@@ -30,13 +30,8 @@ class HashtableTest {
 	void addSuccesTest() {
 		stage2();
 		boolean flag=false;
-		try {
-			hash.find(53).getValue();
-			assertEquals(hash.find(53).getValue(), "Bristo");
-		} catch (NoBookException e) {
-			flag=true;
-		}
-		assertFalse(flag);
+		hash.find(53).getValue();
+		assertEquals(hash.find(53).getValue(), "Bristo");
 	}
 	
 	@Test
@@ -49,12 +44,6 @@ class HashtableTest {
 			flag=true;
 		}
 		assertFalse(flag);
-		try {
-			assertNull(hash.find(50));
-		} catch (NoBookException e) {
-			flag=true;
-		}
-		assertTrue(flag);
 	}
 	
 	@Test
@@ -67,9 +56,4 @@ class HashtableTest {
 		assertTrue(flag);
 	}
 
-	@Test
-	void test() {
-		stage2();
-		
-	}
 }

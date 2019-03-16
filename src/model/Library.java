@@ -30,10 +30,6 @@ public class Library {
 		clients=new Queue<>();
 	}
 	
-	public Library() {
-		clients=new Queue<>();
-	}
-	
 	/**
 	 * @return the clients
 	 */
@@ -83,9 +79,13 @@ public class Library {
 	 * @param price price of the book
 	 * @param quantity how many of the same book will be available
 	 */
-	public void addBook(int bookshelfN, String isbn, double price, int quantity) {
+	public void addBook(String bookshelfN, String isbn, double price, int quantity) {
 		Book book1=new Book(bookshelfN, isbn, price, quantity);
-		bookshelfs[bookshelfN].getBookHash().add(book1.getIsbn(), book1);
+		for(int i=0;i<bookshelfs.length;i++) {
+			if(bookshelfs[i].getId().equals(bookshelfN)) {
+				bookshelfs[i].getBookHash().add(book1.getIsbn(), book1);
+			}
+		}
 	}
 	
 	/**
@@ -96,31 +96,45 @@ public class Library {
 	 * 			to buy is not on the bookshelf or is not available
 	 * 
 	 */
-	public void buyBook() throws NoBookException {
-		Queue<Client> clientsT=new Queue<>();
+	public void buyBook() {
+		Queue<Client> clientsT=new Queue<>();		
 		while(!clients.isEmpty()) {
 			while(!clients.peek().getBooksList().isEmpty()) {
-				Book temp=null;
 				for(int i=0;i<bookshelfs.length;i++) {
-					if(bookshelfs[i].getBookHash().find(clients.peek().getBooksList().peek().getIsbn()).getValue()!=null){
-						temp=bookshelfs[i].getBookHash().find(clients.peek().getBooksList().peek().getIsbn()).getValue();
-						if(temp.getQuantity()>0) {
-							clients.peek().buyBook(bookshelfs[clients.peek().getBooksList().peek().getBookshelf()].getBookHash().find(clients.peek().getBooksList().peek().getIsbn()).getValue());
-							clients.peek().getBookStack().push(clients.peek().getBooksList().pop());
-							clients.peek().setBill(clients.peek().getBill()+clients.peek().getBookStack().peek().getPrice());
-							clients.peek().getBookStack().peek().setQuantity(clients.peek().getBookStack().peek().getQuantity()-1);
+					for(int j=0;j<bookshelfs[i].getBookHash().getNodes().length;j++) {
+						if(bookshelfs[i].getBookHash().getNodes()[j]!=null) {
+							Book temp=bookshelfs[i].getBookHash().find(clients.peek().getBooksList().pop().getIsbn()).getValue();
+							if(temp!=null) {
+								if(temp.getQuantity()>0) {
+									clients.peek().getBookStack().push(temp);
+								}
+							}
 						}
-						break;
 					}
 				}
 			}
 			clientsT.offer(clients.poll());
 		}
+		passCashiers();
+	}
+	
+	/**
+	 * 
+	 */
+	public void passCashiers() {
+		Queue<Client> clientsT=new Queue<>();
+		while(!clients.isEmpty()) {
+			for(int i=0;i<cashiers.length;i++) {
+				if(cashiers[i].isBussy()==false) {
+					clientsT.offer(cashiers[i].attendClient(clients.poll()));
+				}
+			}
+		}
 		while(!clientsT.isEmpty()) {
 			clients.offer(clientsT.poll());
-		}		
+		}
 	}
-
+	
 	/**
 	 * Writes an output to the case that has been passed from the GUI
 	 */
@@ -128,7 +142,6 @@ public class Library {
 		String output="";
 		while(!clients.isEmpty()) {
 			output+=clients.peek().getId()+" "+clients.peek().getBill()+"\n";
-			clients.peek().setBookStack(clients.peek().getBookStack().reverse(clients.peek().getBookStack()));
 			while(!clients.peek().getBookStack().isEmpty()) {
 				output+=clients.peek().getBookStack().pop().getIsbn()+" ";
 			}

@@ -32,7 +32,7 @@ public class Queue<T> implements IQueue<T>{
 	public T peek() {
 		return front.getElement();
 	}
-
+	
 	@Override
 	public T poll() {
 		if(isEmpty()) {
@@ -56,6 +56,7 @@ public class Queue<T> implements IQueue<T>{
 		back=newnode;
 		size++;
 	}
+
 
 	@Override
 	public boolean isEmpty() {

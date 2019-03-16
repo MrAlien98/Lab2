@@ -67,7 +67,7 @@ public class LinkedList<K, V> {
 				}
 			}
 		}
-		return null;
+		return temp;
 	}
 	
 }
