@@ -1,14 +1,8 @@
-<<<<<<< HEAD
-=======
-/application/
-/docs/
 /exceptions/
 /hashtable/
-/image/
 /model/
 /queue/
 /stack/
 /test cases/
->>>>>>> 5b0e788224384840b8711511a5c07676aaa66a47
 /tests/
-/model/
+/application/

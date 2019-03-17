@@ -103,10 +103,12 @@ public class Library {
 				for(int i=0;i<bookshelfs.length;i++) {
 					for(int j=0;j<bookshelfs[i].getBookHash().getNodes().length;j++) {
 						if(bookshelfs[i].getBookHash().getNodes()[j]!=null) {
-							Book temp=bookshelfs[i].getBookHash().find(clients.peek().getBooksList().pop().getIsbn()).getValue();
+							Book temp=bookshelfs[i].getBookHash().find(clients.peek().getBooksList().peek().getIsbn()).getValue();
 							if(temp!=null) {
 								if(temp.getQuantity()>0) {
 									clients.peek().getBookStack().push(temp);
+									j=bookshelfs[i].getBookHash().getNodes().length;
+									i=0;
 								}
 							}
 						}
